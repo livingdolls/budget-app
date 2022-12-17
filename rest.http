@@ -3,7 +3,7 @@ Content-Type: application/json
 
 {
     "nama" : "Nanang Setiawan",
-    "email" : "yurinahirateada@gmail.com",
+    "email" : "yurinahirate11@gmail.com",
     "password" : "secretpassword"
 }
 
@@ -17,3 +17,30 @@ Content-Type: application/json
 
 ###
 GET http://localhost:3001/api/v1/mainBudget/43
+
+# Hapus Main Budget
+###
+DELETE http://localhost:3001/api/v1/mainBudget/afd47006-ae70-4459-aed2-f8694fd8d670
+
+###
+POST  http://localhost:3001/api/v1/auth/regis
+
+
+
+#INCOME ROUTE
+###
+POST http://localhost:3001/api/v1/income
+Content-Type: application/json
+
+{
+    "idMainBudget" : "9ff2804b-7821-487d-a5c9-95702f922a11",
+    "title" : "Nemu di jalan",
+    "budget" : 2000
+}
+
+
+
+
+# Helper DB
+###
+#POST  http://localhost:3001/api/v1/auth/empty

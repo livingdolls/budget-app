@@ -1,7 +1,7 @@
-import { Prisma } from "@prisma/client";
 import prisma from "../config/dbClient";
 import {
 	CreateMainBudget,
+	DeleteMainBudget,
 	MainBudgetWithUserType,
 } from "../interfaces/MainBudget.interface";
 import { MainBudgetType } from "../Types/MainBudget.type";
@@ -9,7 +9,7 @@ import { MainBudgetType } from "../Types/MainBudget.type";
 export const CreateMainBudgetService = (
 	userId: Pick<MainBudgetType, "userId">
 ): CreateMainBudget => {
-	const respon = prisma.MainBudget.create({
+	const respon = prisma.mainBudget.create({
 		data: {
 			maxBudget: 0,
 			userId: userId.userId,
@@ -22,9 +22,9 @@ export const CreateMainBudgetService = (
 export const FindMainBudgetService = (
 	userId: Pick<MainBudgetType, "userId">
 ): MainBudgetWithUserType => {
-	const respon = prisma.MainBudget.findUnique({
+	const respon = prisma.mainBudget.findUnique({
 		where: {
-			userId: Number(userId.userId),
+			userId: userId.userId,
 		},
 		include: {
 			user: {
@@ -35,6 +35,16 @@ export const FindMainBudgetService = (
 				},
 			},
 		},
+	});
+
+	return respon;
+};
+
+export const DeleteMainBudgetService = (
+	id: Pick<MainBudgetType, "id_main_budget">
+): DeleteMainBudget => {
+	const respon = prisma.mainBudget.delete({
+		where: id,
 	});
 
 	return respon;

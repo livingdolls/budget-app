@@ -6,6 +6,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import AuthRoute from "./Routes/Auth.route";
 import MainBudgetRoute from "./Routes/MainBudget.route";
+import IncomeRoute from "./Routes/Income.route";
 
 const app = express();
 
@@ -19,6 +20,7 @@ app.use(cors());
 // Route
 app.use("/api/v1/auth", AuthRoute);
 app.use("/api/v1/mainBudget", MainBudgetRoute);
+app.use("/api/v1/income", IncomeRoute);
 
 // HandleError
 interface StatusError extends Error {

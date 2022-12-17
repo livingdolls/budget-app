@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import {
 	CreateMainBudgetService,
+	DeleteMainBudgetService,
 	FindMainBudgetService,
 } from "../Services/MainBudget.service";
 import { MainBudgetType } from "../Types/MainBudget.type";
@@ -36,8 +37,26 @@ export const FindMainBudgetController = async (
 			return Respon(404, false, [], "budget tidak ditemukan!", res);
 		}
 
-		return Respon(200, true, respon, "success get data!", res);
+		return Respon(200, true, respon, "success mengambil data!", res);
 	} catch (error) {
+		next(error);
+	}
+};
+
+export const DeleteMainBudgetController = async (
+	req: Request<Pick<MainBudgetType, "id_main_budget">>,
+	res: Response,
+	next: NextFunction
+) => {
+	try {
+		const respon = await DeleteMainBudgetService(req.params);
+
+		return Respon(200, true, respon, "berhasil menghapus budget!", res);
+	} catch (error: any) {
+		if (error.code === "P2025") {
+			return Respon(404, false, [], "budget tidak ditemukan!", res);
+		}
+
 		next(error);
 	}
 };

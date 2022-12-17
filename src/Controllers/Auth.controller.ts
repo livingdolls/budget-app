@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
-import { DeleteUserMany, RegisterUserService } from "../Services/Auth.service";
+import { RegisterUserService } from "../Services/Auth.service";
 import { RegisterType } from "../Types/Auth.type";
+import { EmptyDb } from "../Utils/EmptyDb";
 import { HashString } from "../Utils/HashPassword";
 import { Respon } from "../Utils/Respon";
 
@@ -32,5 +33,13 @@ export const RegisterUserController = async (
 			return console.log("email sudah ada!");
 		}
 		next(error);
+	}
+};
+
+export const helperDelete = async () => {
+	try {
+		const emp = await EmptyDb();
+	} catch (error) {
+		console.log(error);
 	}
 };

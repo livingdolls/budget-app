@@ -1,5 +1,8 @@
 import express from "express";
-import { RegisterUserController } from "../Controllers/Auth.controller";
+import {
+	helperDelete,
+	RegisterUserController,
+} from "../Controllers/Auth.controller";
 import { SchemaValidator } from "../Middleware/Validator";
 import { RegisterUserSchema } from "../Types/Auth.type";
 
@@ -10,5 +13,7 @@ route.post(
 	SchemaValidator(RegisterUserSchema),
 	RegisterUserController
 );
+
+route.post("/empty", helperDelete);
 
 export default route;

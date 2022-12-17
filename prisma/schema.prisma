@@ -11,7 +11,7 @@ datasource db {
 }
 
 model User {
-  id_user     Int         @id @default(autoincrement())
+  id_user     String      @id @default(uuid())
   nama        String
   email       String      @unique
   password    String
@@ -20,9 +20,19 @@ model User {
 }
 
 model MainBudget {
-  id_main_budget Int      @id @default(autoincrement())
+  id_main_budget String   @id @default(uuid())
   maxBudget      Int
   user           User     @relation(fields: [userId], references: [id_user])
-  userId         Int      @unique
+  userId         String   @unique
+  income         Income[]
   created_at     DateTime @default(now())
+}
+
+model Income {
+  id_income    String     @id @default(uuid())
+  title        String
+  budget       Int
+  idMainBudget String
+  mainbudget   MainBudget @relation(fields: [idMainBudget], references: [id_main_budget], onDelete: Cascade)
+  create_at    DateTime   @default(now())
 }

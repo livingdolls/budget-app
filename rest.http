@@ -1,0 +1,19 @@
+POST  http://localhost:3001/api/v1/auth/register
+Content-Type: application/json
+
+{
+    "nama" : "Nanang Setiawan",
+    "email" : "yurinahirateada@gmail.com",
+    "password" : "secretpassword"
+}
+
+###
+POST http://localhost:3001/api/v1/mainBudget
+Content-Type: application/json
+
+{
+    "userId" : 45
+}
+
+###
+GET http://localhost:3001/api/v1/mainBudget/43

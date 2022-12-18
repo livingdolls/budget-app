@@ -71,8 +71,8 @@ Content-Type: application/json
 
 {
     "idMainBudget" : "d059117b-4610-4bcc-8ad3-dd8edb1c3ca2",
-    "title" : "Bayar kos",
-    "maxExpense" : 500000
+    "title" : "Beli Kuota",
+    "maxExpense" : 100000
 }
 
 ###
@@ -80,14 +80,18 @@ DELETE http://localhost:3001/api/v1/expense-plan/e9635163-1046-4be1-89cc-732d8f1
 
 
 ###
-PUT http://localhost:3001/api/v1/expense-plan/e9635163-1046-4be1-89cc-732d8f17dc8e
+PUT http://localhost:3001/api/v1/expense-plan/305024e9-792f-4f3a-b9c6-fd1777be3daa
 Content-Type: application/json
 
 {
     "idMainBudget" : "d059117b-4610-4bcc-8ad3-dd8edb1c3ca2",
-    "title" : "Bayar kos",
-    "maxExpense" : 500000
+    "title" : "Beli Kuota",
+    "maxExpense" : 100000
 }
+
+###
+GET http://localhost:3001/api/v1/expense-plan/e9635163-1046-4be1-89cc-732d8f17dc8e
+
 # Helper DB
 ###
 # POST  http://localhost:3001/api/v1/auth/empty

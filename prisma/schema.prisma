@@ -39,11 +39,11 @@ model Income {
 }
 
 model ExpensePlan {
-  id_expensePlan  String     @id @default(uuid())
-  title           String
-  maxExpense      Int
-  remainderBudget Int
-  idMainBudget    String
-  mainBudget      MainBudget @relation(fields: [idMainBudget], references: [id_main_budget], onDelete: Cascade)
-  create_at       DateTime   @default(now())
+  id_expensePlan String     @id @default(uuid())
+  title          String
+  maxExpense     Int
+  usage          Int
+  idMainBudget   String
+  mainBudget     MainBudget @relation(fields: [idMainBudget], references: [id_main_budget], onDelete: Cascade)
+  create_at      DateTime   @default(now())
 }

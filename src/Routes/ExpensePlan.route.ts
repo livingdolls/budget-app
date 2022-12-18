@@ -3,16 +3,18 @@ import {
 	CreateExpensePlanController,
 	DeleteExpensePlanController,
 	UpdateExpenseController,
+	ViewExpanseController,
 } from "../Controllers/ExpensePlan.controller";
 import { SchemaValidator } from "../Middleware/Validator";
 import {
 	CreateExpensePlanSchema,
 	DeleteExpensePlanSchema,
+	UpdateExpensePlanSchema,
 } from "../Types/ExpensePlan.type";
 
 const route = express.Router();
 
-// route.get("/", CreateExpensePlanController);
+route.get("/:id_main_budget", ViewExpanseController);
 route.post(
 	"/",
 	SchemaValidator(CreateExpensePlanSchema),
@@ -25,6 +27,10 @@ route.delete(
 	DeleteExpensePlanController
 );
 
-route.put("/:id_expensePlan", UpdateExpenseController);
+route.put(
+	"/:id_expensePlan",
+	SchemaValidator(UpdateExpensePlanSchema),
+	UpdateExpenseController
+);
 
 export default route;

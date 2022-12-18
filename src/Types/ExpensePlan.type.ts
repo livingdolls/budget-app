@@ -7,9 +7,7 @@ const payload = {
 		),
 		title: string().min(3, { message: "Minimal 3 karakter" }),
 		maxExpense: number().min(0),
-		reminderBudget: optional(
-			string().min(20, { message: "budget tidak valid" })
-		),
+		usage: optional(number().min(0)),
 		idMainBudget: string().min(20, { message: "budget tidak valid!" }),
 		mainbudget: optional(object({})),
 		create_at: optional(date()),
@@ -32,6 +30,11 @@ export const DeleteExpensePlanSchema = object({
 	...params,
 });
 
+export const UpdateExpensePlanSchema = object({
+	...params,
+	...payload,
+});
+
 export type CreateExpensePlanType = TypeOf<
 	typeof CreateExpensePlanSchema
 >["body"];
@@ -39,3 +42,5 @@ export type CreateExpensePlanType = TypeOf<
 export type DeleteExpensePlanType = TypeOf<
 	typeof DeleteExpensePlanSchema
 >["params"];
+
+export type UpdateExpensePlanType = TypeOf<typeof UpdateExpensePlanSchema>;

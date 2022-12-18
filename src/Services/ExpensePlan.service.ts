@@ -3,7 +3,9 @@ import prisma from "../config/dbClient";
 import {
 	CreateExpensePlanType,
 	DeleteExpensePlanType,
+	UpdateExpensePlanType,
 } from "../Types/ExpensePlan.type";
+import { MainBudgetIdType } from "../Types/MainBudget.type";
 
 export const CreateExpensePlanService = async (
 	data: CreateExpensePlanType
@@ -32,7 +34,7 @@ export const CreateExpensePlanService = async (
 			idMainBudget: data.idMainBudget,
 			title: data.title,
 			maxExpense: data.maxExpense,
-			remainderBudget: data.maxExpense,
+			usage: 0,
 		},
 		include: {
 			mainBudget: true,
@@ -42,10 +44,61 @@ export const CreateExpensePlanService = async (
 	return respon;
 };
 
-export const DeleteExpensePlanService = (params: DeleteExpensePlanType) => {
+export const DeleteExpensePlanService = async (
+	params: DeleteExpensePlanType
+) => {
 	const respon = prisma.expensePlan.delete({
 		where: {
 			id_expensePlan: params.id_expensePlan,
+		},
+	});
+	return respon;
+};
+
+export const UpdateExpensePlanService = async (
+	params: UpdateExpensePlanType["params"],
+	body: UpdateExpensePlanType["body"]
+) => {
+	const prevMainBudget = await prisma.mainBudget.findUnique({
+		where: {
+			id_main_budget: body.idMainBudget,
+		},
+		select: {
+			maxBudget: true,
+		},
+	});
+
+	if (prevMainBudget === null) {
+		throw new Error("ada kesalahan pada budget!, silahkan ulangi");
+	}
+
+	if (body.maxExpense > prevMainBudget.maxBudget) {
+		throw new Error(
+			"Rencana pengeluaran lebih besar dari budget yang dimiliki!"
+		);
+	}
+
+	const respon = await prisma.expensePlan.update({
+		where: {
+			id_expensePlan: params.id_expensePlan,
+		},
+		data: {
+			idMainBudget: body.idMainBudget,
+			title: body.title,
+			maxExpense: body.maxExpense,
+		},
+	});
+
+	return respon;
+};
+
+export const ViewExpensePlanService = async (id: MainBudgetIdType) => {
+	const respon = await prisma.mainBudget.findUnique({
+		where: {
+			id_main_budget: id.id_main_budget,
+		},
+		include: {
+			expensive: true,
 		},
 	});
 

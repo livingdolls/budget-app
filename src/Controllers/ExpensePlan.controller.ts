@@ -2,11 +2,15 @@ import { NextFunction, Request, Response } from "express";
 import {
 	CreateExpensePlanService,
 	DeleteExpensePlanService,
+	UpdateExpensePlanService,
+	ViewExpensePlanService,
 } from "../Services/ExpensePlan.service";
 import {
 	CreateExpensePlanType,
 	DeleteExpensePlanType,
+	UpdateExpensePlanType,
 } from "../Types/ExpensePlan.type";
+import { MainBudgetIdType } from "../Types/MainBudget.type";
 import { Respon } from "../Utils/Respon";
 
 export const CreateExpensePlanController = async (
@@ -43,13 +47,37 @@ export const DeleteExpensePlanController = async (
 };
 
 export const UpdateExpenseController = async (
-	req: Request,
+	req: Request<
+		UpdateExpensePlanType["params"],
+		{},
+		UpdateExpensePlanType["body"]
+	>,
 	res: Response,
 	next: NextFunction
 ) => {
 	try {
-		console.log("apaps");
+		const respon = await UpdateExpensePlanService(req.params, req.body);
+		Respon(201, true, respon.title, "berhasil diubah!", res);
 	} catch (error) {
-		console.log(error);
+		next(error);
+	}
+};
+
+export const ViewExpanseController = async (
+	req: Request<MainBudgetIdType>,
+	res: Response,
+	next: NextFunction
+) => {
+	try {
+		const respon = await ViewExpensePlanService(req.params);
+		Respon(
+			200,
+			true,
+			respon,
+			"berhasil menampilkan rencana pengeluaran!",
+			res
+		);
+	} catch (error) {
+		next(error);
 	}
 };

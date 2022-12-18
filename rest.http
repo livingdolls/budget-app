@@ -12,7 +12,7 @@ POST http://localhost:3001/api/v1/mainBudget
 Content-Type: application/json
 
 {
-    "userId" : 45
+    "userId" : "90694f99-133d-4693-bcb3-7d18648b80d3"
 }
 
 ###
@@ -20,7 +20,7 @@ GET http://localhost:3001/api/v1/mainBudget/43
 
 # Hapus Main Budget
 ###
-DELETE http://localhost:3001/api/v1/mainBudget/afd47006-ae70-4459-aed2-f8694fd8d670
+DELETE http://localhost:3001/api/v1/mainBudget/37d22c49-66b7-4567-a560-00d7c15ab2d4
 
 ###
 POST  http://localhost:3001/api/v1/auth/regis
@@ -28,18 +28,35 @@ POST  http://localhost:3001/api/v1/auth/regis
 
 
 #INCOME ROUTE
+
+#Buat income
 ###
-POST http://localhost:3001/api/v1/income
+POST http://localhost:3001/api/v1/income/budget/9f220a50-a289-42bf-ab9c-11d51693d718
 Content-Type: application/json
 
 {
-    "idMainBudget" : "9ff2804b-7821-487d-a5c9-95702f922a11",
-    "title" : "Nemu di jalan",
-    "budget" : 2000
+    "title" : "nemu",
+    "budget" : 500000
 }
 
+#Delete Income
+###
+DELETE http://localhost:3001/api/v1/income/budget/9ff2804b-7821-487d-a5c9-95702f922a11/f61070e6-177b-4af7-9a49-2efbb898c556
 
+#Update Income
+###
+PUT http://localhost:3001/api/v1/income/budget/9f220a50-a289-42bf-ab9c-11d51693d718/626fd750-690e-4d4d-9ccf-f3c631b97859
+Content-Type: application/json
 
+{
+    "title" : "Payah",
+    "budget" : 600000
+}
+
+#Lihat Income
+
+###
+GET http://localhost:3001/api/v1/income/budget/9ff2804b-7821-487d-a5c9-95702f922a11
 
 # Helper DB
 ###

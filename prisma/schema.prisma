@@ -20,12 +20,13 @@ model User {
 }
 
 model MainBudget {
-  id_main_budget String   @id @default(uuid())
+  id_main_budget String        @id @default(uuid())
   maxBudget      Int
-  user           User     @relation(fields: [userId], references: [id_user])
-  userId         String   @unique
+  user           User          @relation(fields: [userId], references: [id_user], onDelete: Cascade)
+  userId         String        @unique
   income         Income[]
-  created_at     DateTime @default(now())
+  expensive      ExpensePlan[]
+  created_at     DateTime      @default(now())
 }
 
 model Income {
@@ -35,4 +36,14 @@ model Income {
   idMainBudget String
   mainbudget   MainBudget @relation(fields: [idMainBudget], references: [id_main_budget], onDelete: Cascade)
   create_at    DateTime   @default(now())
+}
+
+model ExpensePlan {
+  id_expensePlan  String     @id @default(uuid())
+  title           String
+  maxExpense      Int
+  remainderBudget Int
+  idMainBudget    String
+  mainBudget      MainBudget @relation(fields: [idMainBudget], references: [id_main_budget], onDelete: Cascade)
+  create_at       DateTime   @default(now())
 }

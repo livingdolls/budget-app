@@ -90,7 +90,7 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:3001/api/v1/expense-plan/d059117b-4610-4bcc-8ad3-dd8edb1c3ca2
+GET http://localhost:3001/api/v1/expense-plan/408c7295-e9ad-4e8d-95a8-f42d05e6b8d6
 
 
 #EXPENSE ROUTE
@@ -118,6 +118,9 @@ Content-Type: application/json
     "title" : "updated",
     "budget" : 10000
 }
+
+###
+GET http://localhost:3001/api/v1/expense/9cefe3d9-e803-4b3a-bfe0-0e6c71631075
 
 # Helper DB
 ###

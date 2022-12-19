@@ -3,12 +3,14 @@ import {
 	CreateExpenseService,
 	DeleteExpenseService,
 	UpdateExpenseService,
+	ViewExpenseService,
 } from "../Services/Expense.service";
 import {
 	CreateExpenseType,
 	ExpenseIdType,
 	UpdateExpenseType,
 } from "../Types/Expense.type";
+import { DeleteExpensePlanType } from "../Types/ExpensePlan.type";
 import { Respon } from "../Utils/Respon";
 
 export const CreateExpense = async (
@@ -51,6 +53,28 @@ export const UpdateExpense = async (
 		const respon = await UpdateExpenseService(req.params, req.body);
 
 		Respon(200, true, respon, "berhasil merubah pengeluaran!", res);
+	} catch (error) {
+		next(error);
+	}
+};
+
+export const ViewExpense = async (
+	req: Request<DeleteExpensePlanType>,
+	res: Response,
+	next: NextFunction
+) => {
+	try {
+		const respon = await ViewExpenseService(req.params);
+		if (respon === null) {
+			Respon(
+				404,
+				false,
+				respon,
+				"rencana pengeluaran tidak ditemukan!",
+				res
+			);
+		}
+		Respon(200, true, respon, "berhasil menampilkan pengeluaran!", res);
 	} catch (error) {
 		next(error);
 	}

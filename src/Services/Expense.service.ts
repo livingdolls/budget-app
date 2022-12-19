@@ -5,6 +5,7 @@ import {
 	ExpenseIdType,
 	UpdateExpenseType,
 } from "../Types/Expense.type";
+import { DeleteExpensePlanType } from "../Types/ExpensePlan.type";
 
 export const CreateExpenseService = async (
 	data: CreateExpenseType
@@ -101,7 +102,7 @@ export const DeleteExpenseService = async (
 export const UpdateExpenseService = async (
 	params: UpdateExpenseType["params"],
 	body: UpdateExpenseType["body"]
-) => {
+): Promise<ExpenseEx> => {
 	const prevExpense = await prisma.expense.findUnique({
 		where: {
 			id_expense: params.id_expense,
@@ -152,6 +153,21 @@ export const UpdateExpenseService = async (
 					},
 				},
 			},
+		},
+		include: {
+			Expense: true,
+		},
+	});
+
+	return respon;
+};
+
+export const ViewExpenseService = async (
+	params: DeleteExpensePlanType
+): Promise<ExpenseEx | null> => {
+	const respon = await prisma.expensePlan.findUnique({
+		where: {
+			id_expensePlan: params.id_expensePlan,
 		},
 		include: {
 			Expense: true,

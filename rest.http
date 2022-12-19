@@ -76,7 +76,7 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:3001/api/v1/expense-plan/e9635163-1046-4be1-89cc-732d8f17dc8e
+DELETE http://localhost:3001/api/v1/expense-plan/305024e9-792f-4f3a-b9c6-fd1777be3daa
 
 
 ###
@@ -90,7 +90,34 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:3001/api/v1/expense-plan/e9635163-1046-4be1-89cc-732d8f17dc8e
+GET http://localhost:3001/api/v1/expense-plan/d059117b-4610-4bcc-8ad3-dd8edb1c3ca2
+
+
+#EXPENSE ROUTE
+
+###
+POST http://localhost:3001/api/v1/expense
+Content-Type: application/json
+
+{
+    "idExpensePlan" : "9cefe3d9-e803-4b3a-bfe0-0e6c71631075",
+    "title" : "kedua",
+    "budget" : 1000
+}
+
+###
+DELETE http://localhost:3001/api/v1/expense/e09a28dd-0697-463e-aee0-a772b78e3c80
+
+
+###
+PUT http://localhost:3001/api/v1/expense/408c7295-e9ad-4e8d-95a8-f42d05e6b8d6
+Content-Type: application/json
+
+{
+    "idExpensePlan" : "9cefe3d9-e803-4b3a-bfe0-0e6c71631075",
+    "title" : "updated",
+    "budget" : 10000
+}
 
 # Helper DB
 ###

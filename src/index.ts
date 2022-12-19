@@ -8,6 +8,7 @@ import AuthRoute from "./Routes/Auth.route";
 import MainBudgetRoute from "./Routes/MainBudget.route";
 import IncomeRoute from "./Routes/Income.route";
 import ExpensePlanRoute from "./Routes/ExpensePlan.route";
+import ExpenseRoute from "./Routes/Expense.route";
 
 const app = express();
 
@@ -23,6 +24,7 @@ app.use("/api/v1/auth", AuthRoute);
 app.use("/api/v1/mainBudget", MainBudgetRoute);
 app.use("/api/v1/income", IncomeRoute);
 app.use("/api/v1/expense-plan", ExpensePlanRoute);
+app.use("/api/v1/expense", ExpenseRoute);
 
 // HandleError
 interface StatusError extends Error {

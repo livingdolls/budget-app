@@ -9,6 +9,7 @@ import MainBudgetRoute from "./Routes/MainBudget.route";
 import IncomeRoute from "./Routes/Income.route";
 import ExpensePlanRoute from "./Routes/ExpensePlan.route";
 import ExpenseRoute from "./Routes/Expense.route";
+import cookieParser from "cookie-parser";
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.use(bodyParser.json());
 app.use(morgan("dev"));
 app.use(helmet());
 app.use(cors());
+app.use(cookieParser());
 
 // Route
 app.use("/api/v1/auth", AuthRoute);

@@ -6,7 +6,6 @@ const payload = {
 		nama: string().min(6).max(16),
 		email: string().email(),
 		password: string().min(6).max(16),
-		token: optional(string()),
 	}),
 };
 
@@ -14,4 +13,12 @@ export const RegisterUserSchema = object({
 	...payload,
 });
 
+export const LoginUserSchema = object({
+	body: object({
+		email: string().email(),
+		password: string().min(6).max(16),
+	}),
+});
+
 export type RegisterType = TypeOf<typeof RegisterUserSchema>["body"];
+export type LoginType = TypeOf<typeof LoginUserSchema>["body"];

@@ -15,8 +15,15 @@ model User {
   nama        String
   email       String      @unique
   password    String
-  token       String?
+  credential  Credential?
   main_budget MainBudget?
+}
+
+model Credential {
+  id_credential String @id @default(uuid())
+  userId        String @unique
+  token         String @db.Text
+  user          User   @relation(fields: [userId], references: [id_user], onDelete: Cascade)
 }
 
 model MainBudget {

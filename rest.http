@@ -16,7 +16,8 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:3001/api/v1/mainBudget/43
+GET http://localhost:3001/api/v1/mainBudget/eee24def-db65-4949-a9aa-a69478b9f59c
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjcmVkZW50aWFsSWQiOiJmYTBmMTdhNC0zNjllLTQxYjktYTdkYS04ODk4NDgzYjk1ZTEiLCJ1c2VySWQiOiJlZWUyNGRlZi1kYjY1LTQ5NDktYTlhYS1hNjk0NzhiOWY1OWMiLCJleHAiOjE2NzE4ODUyNTN9.RZ_9Q2dPRhWIcYQwygXpuVl8ERUdpSl9pXibIFYr6OA
 
 # Hapus Main Budget
 ###
@@ -122,6 +123,22 @@ Content-Type: application/json
 ###
 GET http://localhost:3001/api/v1/expense/9cefe3d9-e803-4b3a-bfe0-0e6c71631075
 
+
+
+###
+POST http://localhost:3001/api/v1/auth/login
+Content-Type: application/json
+
+{
+    "email" : "yurinahirate@gmail.com",
+    "password" : "secretpassword"
+}
+
+###
+GET http://localhost:3001/api/v1/mainBudget/eee24def-db65-4949-a9aa-a69478b9f59c
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjcmVkZW50aWFsSWQiOiJmYTBmMTdhNC0zNjllLTQxYjktYTdkYS04ODk4NDgzYjk1ZTEiLCJ1c2VySWQiOiJlZWUyNGRlZi1kYjY1LTQ5NDktYTlhYS1hNjk0NzhiOWY1OWMiLCJleHAiOjE2NzE4ODUyNTN9.RZ_9Q2dPRhWIcYQwygXpuVl8ERUdpSl9pXibIFYr6OA
+
+
 # Helper DB
 ###
-# POST  http://localhost:3001/api/v1/auth/empty
+#POST  http://localhost:3001/api/v1/auth/empty

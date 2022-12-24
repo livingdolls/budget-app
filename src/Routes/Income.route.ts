@@ -5,6 +5,7 @@ import {
 	UpdateIncomeController,
 	ViewIncomeController,
 } from "../Controllers/Income.controller";
+import { VerifyToken } from "../Middleware/ValidasiToken";
 import { SchemaValidator } from "../Middleware/Validator";
 import {
 	CreateIncomeSchema,
@@ -17,6 +18,7 @@ const route = express.Router();
 
 route.post(
 	"/budget/:idMainBudget",
+	VerifyToken,
 	SchemaValidator(CreateIncomeSchema),
 	CreateIncomeController
 );

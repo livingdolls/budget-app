@@ -74,7 +74,7 @@ export const LoginUserController = async (
 		};
 
 		const signToken = jwt.sign(data, jwt_token, {
-			expiresIn: "30s",
+			expiresIn: "1d",
 			noTimestamp: true,
 		});
 
@@ -89,7 +89,7 @@ export const LoginUserController = async (
 		);
 
 		// setCookies
-		res.cookie("refreshToken", refreshToken, {
+		res.cookie("token_budget", refreshToken, {
 			httpOnly: true,
 			maxAge: 24 * 60 * 60 * 1000,
 			secure: false,

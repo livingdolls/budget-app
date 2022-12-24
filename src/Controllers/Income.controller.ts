@@ -19,9 +19,10 @@ export const CreateIncomeController = async (
 	next: NextFunction
 ) => {
 	try {
-		const respon = await CreateIncomeService(req.params, req.body);
+		console.log(req.token);
+		// const respon = await CreateIncomeService(req.params, req.body);
 
-		return Respon(200, true, respon, "berhasil menambah income", res);
+		// return Respon(200, true, respon, "berhasil menambah income", res);
 	} catch (error) {
 		next(error);
 	}

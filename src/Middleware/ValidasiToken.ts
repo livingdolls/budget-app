@@ -1,12 +1,17 @@
 import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
 
-export interface CustomRequest extends Request {
-	token: string;
+declare global {
+	namespace Express {
+		export interface Request {
+			token: IPatyload;
+		}
+	}
 }
 
 export type IPatyload = {
-	_id_user: string;
+	credentialId: string;
+	userId: string;
 	exp: number;
 };
 
@@ -15,7 +20,6 @@ export const VerifyToken = (
 	res: Response,
 	next: NextFunction
 ) => {
-	// const token = req.cookies.refreshToken;
 	const authHeader = req.headers["authorization"];
 	const token = authHeader && authHeader.split(" ")[1];
 
@@ -28,8 +32,7 @@ export const VerifyToken = (
 			process.env.JWT_TOKEN || "supersecret"
 		) as IPatyload;
 
-		(req as CustomRequest).token = tokenValidate._id_user;
-		console.log(tokenValidate);
+		req.token = tokenValidate;
 
 		next();
 	} catch (error) {

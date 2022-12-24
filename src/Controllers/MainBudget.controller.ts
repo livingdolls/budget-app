@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from "express";
+import jwt from "jsonwebtoken";
 import {
 	CreateMainBudgetService,
 	DeleteMainBudgetService,
@@ -31,6 +32,12 @@ export const FindMainBudgetController = async (
 	next: NextFunction
 ) => {
 	try {
+		const token = req.token;
+
+		if (req.params.userId !== token.userId) {
+			throw Error("akses dilarang!");
+		}
+
 		const respon = await FindMainBudgetService(req.params);
 
 		if (respon === null) {

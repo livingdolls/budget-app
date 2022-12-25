@@ -5,6 +5,8 @@ import {
 	UpdateExpenseController,
 	ViewExpanseController,
 } from "../Controllers/ExpensePlan.controller";
+import { VerifyToken } from "../Middleware/ValidasiToken";
+import { VerifyUserExpensePlan } from "../Middleware/ValidasiUserBudget";
 import { SchemaValidator } from "../Middleware/Validator";
 import {
 	CreateExpensePlanSchema,
@@ -23,12 +25,16 @@ route.post(
 
 route.delete(
 	"/:id_expensePlan",
+	VerifyToken,
+	VerifyUserExpensePlan,
 	SchemaValidator(DeleteExpensePlanSchema),
 	DeleteExpensePlanController
 );
 
 route.put(
 	"/:id_expensePlan",
+	VerifyToken,
+	VerifyUserExpensePlan,
 	SchemaValidator(UpdateExpensePlanSchema),
 	UpdateExpenseController
 );

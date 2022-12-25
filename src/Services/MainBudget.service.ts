@@ -1,3 +1,4 @@
+import { MainBudget } from "@prisma/client";
 import prisma from "../config/dbClient";
 import {
 	CreateMainBudget,
@@ -47,5 +48,16 @@ export const DeleteMainBudgetService = (
 		where: id,
 	});
 
+	return respon;
+};
+
+export const FindMainBudgetByIdService = async (
+	idUser: Pick<MainBudgetType, "userId">
+): Promise<MainBudget | null> => {
+	const respon = await prisma.mainBudget.findUnique({
+		where: {
+			userId: idUser.userId,
+		},
+	});
 	return respon;
 };

@@ -32,7 +32,7 @@ POST  http://localhost:3001/api/v1/auth/regis
 
 #Buat income
 ###
-POST http://localhost:3001/api/v1/income/budget/d059117b-4610-4bcc-8ad3-dd8edb1c3ca2
+POST http://localhost:3001/api/v1/income/budget/63d1eca4-7585-451d-877a-240eaa09ca29
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjcmVkZW50aWFsSWQiOiJmYTBmMTdhNC0zNjllLTQxYjktYTdkYS04ODk4NDgzYjk1ZTEiLCJ1c2VySWQiOiJlZWUyNGRlZi1kYjY1LTQ5NDktYTlhYS1hNjk0NzhiOWY1OWMiLCJleHAiOjE2NzE5OTAxMTB9.XSMRJRNmmxJanPr6qJchPhzrxvmICVlO4KkyQ_QxF9c
 Content-Type: application/json
 
@@ -43,22 +43,25 @@ Content-Type: application/json
 
 #Delete Income
 ###
-DELETE http://localhost:3001/api/v1/income/budget/9f220a50-a289-42bf-ab9c-11d51693d718/626fd750-690e-4d4d-9ccf-f3c631b97859
+DELETE http://localhost:3001/api/v1/income/budget/63d1eca4-7585-451d-877a-240eaa09ca29/7b0afa61-5577-4edb-8b4a-f5866ccd19b4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjcmVkZW50aWFsSWQiOiJmYTBmMTdhNC0zNjllLTQxYjktYTdkYS04ODk4NDgzYjk1ZTEiLCJ1c2VySWQiOiJlZWUyNGRlZi1kYjY1LTQ5NDktYTlhYS1hNjk0NzhiOWY1OWMiLCJleHAiOjE2NzE5OTAxMTB9.XSMRJRNmmxJanPr6qJchPhzrxvmICVlO4KkyQ_QxF9c
 
 #Update Income
 ###
-PUT http://localhost:3001/api/v1/income/budget/9f220a50-a289-42bf-ab9c-11d51693d718/626fd750-690e-4d4d-9ccf-f3c631b97859
+PUT http://localhost:3001/api/v1/income/budget/63d1eca4-7585-451d-877a-240eaa09ca29/e5a7f7de-98ba-4925-b811-ab4727d99683
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjcmVkZW50aWFsSWQiOiJmYTBmMTdhNC0zNjllLTQxYjktYTdkYS04ODk4NDgzYjk1ZTEiLCJ1c2VySWQiOiJlZWUyNGRlZi1kYjY1LTQ5NDktYTlhYS1hNjk0NzhiOWY1OWMiLCJleHAiOjE2NzE5OTAxMTB9.XSMRJRNmmxJanPr6qJchPhzrxvmICVlO4KkyQ_QxF9c
 Content-Type: application/json
 
 {
-    "title" : "Payah",
-    "budget" : 600000
+    "title" : "Jual Hp",
+    "budget" : 100000
 }
 
 #Lihat Income
 
 ###
-GET http://localhost:3001/api/v1/income/budget/9ff2804b-7821-487d-a5c9-95702f922a11
+GET http://localhost:3001/api/v1/income/budget/63d1eca4-7585-451d-877a-240eaa09ca29
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjcmVkZW50aWFsSWQiOiJmYTBmMTdhNC0zNjllLTQxYjktYTdkYS04ODk4NDgzYjk1ZTEiLCJ1c2VySWQiOiJlZWUyNGRlZi1kYjY1LTQ5NDktYTlhYS1hNjk0NzhiOWY1OWMiLCJleHAiOjE2NzE5OTAxMTB9.XSMRJRNmmxJanPr6qJchPhzrxvmICVlO4KkyQ_QxF9c
 
 
 
@@ -72,23 +75,24 @@ POST http://localhost:3001/api/v1/expense-plan/
 Content-Type: application/json
 
 {
-    "idMainBudget" : "d059117b-4610-4bcc-8ad3-dd8edb1c3ca2",
+    "idMainBudget" : "63d1eca4-7585-451d-877a-240eaa09ca29",
     "title" : "Beli Kuota",
     "maxExpense" : 100000
 }
 
 ###
-DELETE http://localhost:3001/api/v1/expense-plan/305024e9-792f-4f3a-b9c6-fd1777be3daa
-
+DELETE http://localhost:3001/api/v1/expense-plan/d31fab4f-3a21-4b9b-948c-3f1046e909a9
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjcmVkZW50aWFsSWQiOiJmYTBmMTdhNC0zNjllLTQxYjktYTdkYS04ODk4NDgzYjk1ZTEiLCJ1c2VySWQiOiJlZWUyNGRlZi1kYjY1LTQ5NDktYTlhYS1hNjk0NzhiOWY1OWMiLCJleHAiOjE2NzE5OTAxMTB9.XSMRJRNmmxJanPr6qJchPhzrxvmICVlO4KkyQ_QxF9c
 
 ###
-PUT http://localhost:3001/api/v1/expense-plan/305024e9-792f-4f3a-b9c6-fd1777be3daa
+PUT http://localhost:3001/api/v1/expense-plan/d31fab4f-3a21-4b9b-948c-3f1046e909a9
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjcmVkZW50aWFsSWQiOiJmYTBmMTdhNC0zNjllLTQxYjktYTdkYS04ODk4NDgzYjk1ZTEiLCJ1c2VySWQiOiJlZWUyNGRlZi1kYjY1LTQ5NDktYTlhYS1hNjk0NzhiOWY1OWMiLCJleHAiOjE2NzE5OTAxMTB9.XSMRJRNmmxJanPr6qJchPhzrxvmICVlO4KkyQ_QxF9c
 Content-Type: application/json
 
 {
-    "idMainBudget" : "d059117b-4610-4bcc-8ad3-dd8edb1c3ca2",
-    "title" : "Beli Kuota",
-    "maxExpense" : 100000
+    "idMainBudget" : "63d1eca4-7585-451d-877a-240eaa09ca29",
+    "title" : "Beli Buah",
+    "maxExpense" : 2000
 }
 
 ###

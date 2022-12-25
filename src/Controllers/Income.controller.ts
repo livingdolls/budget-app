@@ -5,6 +5,7 @@ import {
 	UpdateIncomeService,
 	ViewIncomeService,
 } from "../Services/Income.service";
+import { FindMainBudgetByIdService } from "../Services/MainBudget.service";
 import {
 	CreateIncomeType,
 	DeleteIncomeType,
@@ -19,10 +20,9 @@ export const CreateIncomeController = async (
 	next: NextFunction
 ) => {
 	try {
-		console.log(req.token);
-		// const respon = await CreateIncomeService(req.params, req.body);
+		const respon = await CreateIncomeService(req.params, req.body);
 
-		// return Respon(200, true, respon, "berhasil menambah income", res);
+		return Respon(200, true, respon, "berhasil menambah income", res);
 	} catch (error) {
 		next(error);
 	}

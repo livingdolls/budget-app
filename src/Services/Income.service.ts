@@ -20,7 +20,7 @@ export const CreateIncomeService = async (
 		},
 	});
 	if (prevBudget === null) {
-		throw new Error("ada yang salah, silahkan ulangi kembali!");
+		throw new Error("budget tidak ditemukan!");
 	}
 
 	const respon = await prisma.mainBudget.update({

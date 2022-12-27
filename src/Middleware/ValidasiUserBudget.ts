@@ -35,6 +35,8 @@ export const VerifyUserExpensePlan = async (
 			userId: req.token.userId,
 		});
 
+		console.log(findBudget);
+
 		const findExpensePlan = await FindExpensePlanService({
 			id_expensePlan: req.params.id_expensePlan,
 		});

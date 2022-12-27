@@ -3,14 +3,14 @@ import {
 	CreateExpensePlanService,
 	DeleteExpensePlanService,
 	UpdateExpensePlanService,
-	ViewExpensePlanService,
 } from "../Services/ExpensePlan.service";
+import { ExpensePlanService } from "../Services/MainBudget.service";
 import {
 	CreateExpensePlanType,
 	DeleteExpensePlanType,
 	UpdateExpensePlanType,
 } from "../Types/ExpensePlan.type";
-import { MainBudgetIdType } from "../Types/MainBudget.type";
+import { MainBudgetType } from "../Types/MainBudget.type";
 import { Respon } from "../Utils/Respon";
 
 export const CreateExpensePlanController = async (
@@ -64,12 +64,12 @@ export const UpdateExpenseController = async (
 };
 
 export const ViewExpanseController = async (
-	req: Request<MainBudgetIdType>,
+	req: Request<Pick<MainBudgetType, "userId">>,
 	res: Response,
 	next: NextFunction
 ) => {
 	try {
-		const respon = await ViewExpensePlanService(req.params);
+		const respon = await ExpensePlanService(req.params);
 		Respon(
 			200,
 			true,

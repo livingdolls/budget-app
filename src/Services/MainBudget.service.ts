@@ -61,3 +61,18 @@ export const FindMainBudgetByIdService = async (
 	});
 	return respon;
 };
+
+export const ExpensePlanService = async (
+	id: Pick<MainBudgetType, "userId">
+) => {
+	const respon = await prisma.mainBudget.findUnique({
+		where: {
+			userId: id.userId,
+		},
+		include: {
+			expensive: true,
+		},
+	});
+
+	return respon;
+};

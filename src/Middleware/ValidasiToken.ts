@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
+import { FindRefreshToken } from "../Services/Auth.service";
 
 declare global {
 	namespace Express {
@@ -23,7 +24,7 @@ export const VerifyToken = (
 	const authHeader = req.headers["authorization"];
 	const token = authHeader && authHeader.split(" ")[1];
 
-	if (!token) throw Error("Akses dilarang");
+	if (!token) return res.sendStatus(401);
 
 	// TODO
 	try {
@@ -36,41 +37,43 @@ export const VerifyToken = (
 
 		next();
 	} catch (error) {
-		throw Error("token tidak valid");
+		return res.sendStatus(403);
 	}
 };
 
-// export const RefreshToken = async (
-// 	req: Request,
-// 	res: Response,
-// 	next: NextFunction
-// ) => {
-// 	try {
-// 		const refreshToken = req.cookies.refreshToken;
-// 		console.log(req.cookies.refreshToken);
-// 		if (!refreshToken) res.sendStatus(401);
+export const RefreshToken = async (
+	req: Request,
+	res: Response,
+	next: NextFunction
+) => {
+	try {
+		const refreshToken = req.cookies.token_budget;
+		if (!refreshToken) res.sendStatus(401);
 
-// 		const findUser: any = await getRefreshToken(refreshToken);
-// 		if (findUser.length === 0) res.sendStatus(404);
-// 		const { _id_user, nama, email, isSuperAdmin } = findUser[0];
+		const findToken = await FindRefreshToken(refreshToken);
 
-// 		try {
-// 			const refresh = jwt.verify(
-// 				refreshToken,
-// 				process.env.REFRESH_TOKEN || "refreshsupersecret"
-// 			);
+		if (findToken === null) {
+			res.sendStatus(401);
+			throw Error("user tidak valid");
+		}
 
-// 			const accessToken = jwt.sign(
-// 				{ _id_user },
-// 				process.env.TOKEN_SECRET || "supersecret",
-// 				{ expiresIn: "25s" }
-// 			);
+		try {
+			const refresh = jwt.verify(
+				refreshToken,
+				process.env.REFRESH_JWT || "refreshsupersecret"
+			);
 
-// 			res.json({ accessToken });
-// 		} catch (error) {
-// 			res.sendStatus(403);
-// 		}
-// 	} catch (error: any) {
-// 		throw new Error(error);
-// 	}
-// };
+			const accessToken = jwt.sign(
+				findToken,
+				process.env.JWT_TOKEN || "supersecret",
+				{ expiresIn: "25s", noTimestamp: true }
+			);
+
+			res.json({ accessToken });
+		} catch (error) {
+			res.sendStatus(403);
+		}
+	} catch (error: any) {
+		throw new Error(error);
+	}
+};

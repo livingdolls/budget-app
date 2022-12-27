@@ -92,19 +92,6 @@ export const UpdateExpensePlanService = async (
 	return respon;
 };
 
-export const ViewExpensePlanService = async (id: MainBudgetIdType) => {
-	const respon = await prisma.mainBudget.findUnique({
-		where: {
-			id_main_budget: id.id_main_budget,
-		},
-		include: {
-			expensive: true,
-		},
-	});
-
-	return respon;
-};
-
 export const FindExpensePlanService = async (
 	id: DeleteExpensePlanType
 ): Promise<ExpensePlan | null> => {

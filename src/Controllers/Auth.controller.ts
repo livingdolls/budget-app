@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import {
+	FindUserByIdService,
 	FindUserCredentialService,
 	RegisterUserService,
 	UpdateTokenService,
@@ -47,10 +48,10 @@ export const LoginUserController = async (
 	next: NextFunction
 ) => {
 	try {
-		// console.log(req.body);
 		// cari user
 		const findEmail = await FindUserCredentialService(req.body);
 		if (findEmail === null) {
+			res.status(401).json("email tidak ditemukan");
 			throw new Error("email tidak ditemukan");
 		}
 
@@ -59,7 +60,10 @@ export const LoginUserController = async (
 			findEmail.password
 		);
 
-		if (!comparePass) throw new Error("Kata sandi salah");
+		if (!comparePass) {
+			res.status(401).json("kata sandi salah!");
+			throw new Error("Kata sandi salah");
+		}
 		// End Validasi
 
 		const jwt_token = process.env.JWT_TOKEN || "supersecret";
@@ -98,6 +102,20 @@ export const LoginUserController = async (
 		res.json({ signToken });
 	} catch (error) {
 		console.log(error);
+	}
+};
+
+export const getUserController = async (
+	req: Request,
+	res: Response,
+	next: NextFunction
+) => {
+	try {
+		const respon = await FindUserByIdService(req.params.idUser);
+
+		return Respon(201, true, respon, "success get user", res);
+	} catch (error) {
+		next(error);
 	}
 };
 

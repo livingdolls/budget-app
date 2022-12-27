@@ -18,7 +18,7 @@ dotenv.config();
 app.use(bodyParser.json());
 app.use(morgan("dev"));
 app.use(helmet());
-app.use(cors());
+app.use(cors({ credentials: true, origin: "http://localhost:5173" }));
 app.use(cookieParser());
 
 // Route

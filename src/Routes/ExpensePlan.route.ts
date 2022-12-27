@@ -16,7 +16,7 @@ import {
 
 const route = express.Router();
 
-route.get("/:id_main_budget", ViewExpanseController);
+route.get("/:userId", ViewExpanseController);
 route.post(
 	"/",
 	SchemaValidator(CreateExpensePlanSchema),

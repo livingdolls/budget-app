@@ -1,4 +1,4 @@
-import { Credential } from "@prisma/client";
+import { Credential, Prisma } from "@prisma/client";
 import prisma from "../config/dbClient";
 import { findUserCredential, RegisterUser } from "../interfaces/Auth.interface";
 import { LoginType, RegisterType } from "../Types/Auth.type";
@@ -52,6 +52,33 @@ export const UpdateTokenService = async (
 		},
 		data: {
 			token: token,
+		},
+	});
+
+	return respon;
+};
+
+export const FindRefreshToken = async (
+	token: string
+): Promise<Credential | null> => {
+	const respon = await prisma.credential.findFirst({
+		where: {
+			token: token,
+		},
+	});
+
+	return respon;
+};
+
+export const FindUserByIdService = async (id: string) => {
+	const respon = await prisma.user.findUnique({
+		where: {
+			id_user: id,
+		},
+		select: {
+			id_user: true,
+			nama: true,
+			email: true,
 		},
 	});
 

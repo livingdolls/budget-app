@@ -71,6 +71,10 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjcmVkZW50aWFsSWQiO
 GET http://localhost:3001/api/v1/expense-plan/
 
 ###
+GET http://localhost:3001/api/v1/expense-plan/plan/2b2961a9-0a11-4149-bbbe-f9c9b0c73ff2
+
+
+###
 POST http://localhost:3001/api/v1/expense-plan/
 Content-Type: application/json
 
@@ -96,7 +100,7 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:3001/api/v1/expense-plan/408c7295-e9ad-4e8d-95a8-f42d05e6b8d6
+GET http://localhost:3001/api/v1/expense-plan/63d1eca4-7585-451d-877a-240eaa09ca29
 
 
 #EXPENSE ROUTE
@@ -106,9 +110,9 @@ POST http://localhost:3001/api/v1/expense
 Content-Type: application/json
 
 {
-    "idExpensePlan" : "9cefe3d9-e803-4b3a-bfe0-0e6c71631075",
-    "title" : "kedua",
-    "budget" : 1000
+    "idExpensePlan" : "e4b64ef8-d9a0-4754-b569-4df650488af7",
+    "title" : "erta",
+    "budget" : 20000
 }
 
 ###

@@ -99,6 +99,9 @@ export const FindExpensePlanService = async (
 		where: {
 			id_expensePlan: id.id_expensePlan,
 		},
+		include: {
+			Expense: true,
+		},
 	});
 
 	return respon;

@@ -5,6 +5,7 @@ import {
 	UpdateExpense,
 	ViewExpense,
 } from "../Controllers/Expense.controller";
+import { VerifyToken } from "../Middleware/ValidasiToken";
 import { SchemaValidator } from "../Middleware/Validator";
 import {
 	CreateExpenseSchema,
@@ -14,9 +15,24 @@ import {
 
 const route = express.Router();
 
-route.post("/", SchemaValidator(CreateExpenseSchema), CreateExpense);
-route.delete("/:id_expense", SchemaValidator(ExpenseIdSchema), DeleteExpense);
-route.put("/:id_expense", SchemaValidator(UpdateExpenseSchema), UpdateExpense);
-route.get("/:id_expensePlan", ViewExpense);
+route.post(
+	"/",
+	VerifyToken,
+	SchemaValidator(CreateExpenseSchema),
+	CreateExpense
+);
+route.delete(
+	"/:id_expense",
+	VerifyToken,
+	SchemaValidator(ExpenseIdSchema),
+	DeleteExpense
+);
+route.put(
+	"/:id_expense",
+	VerifyToken,
+	SchemaValidator(UpdateExpenseSchema),
+	UpdateExpense
+);
+route.get("/:id_expensePlan", VerifyToken, ViewExpense);
 
 export default route;

@@ -2,9 +2,11 @@ import { NextFunction, Request, Response } from "express";
 import {
 	CreateExpensePlanService,
 	DeleteExpensePlanService,
+	FindExpensePlanService,
 	UpdateExpensePlanService,
 } from "../Services/ExpensePlan.service";
 import { ExpensePlanService } from "../Services/MainBudget.service";
+import { ExpenseIdType } from "../Types/Expense.type";
 import {
 	CreateExpensePlanType,
 	DeleteExpensePlanType,
@@ -78,6 +80,19 @@ export const ViewExpanseController = async (
 			res
 		);
 	} catch (error) {
+		next(error);
+	}
+};
+
+export const FindExpensePlanController = async (
+	req: Request<DeleteExpensePlanType>,
+	res: Response,
+	next: NextFunction
+) => {
+	try {
+		const respon = await FindExpensePlanService(req.params);
+		Respon(200, true, respon, "sukses mengambil expense plan", res);
+	} catch (error: any) {
 		next(error);
 	}
 };

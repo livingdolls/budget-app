@@ -2,6 +2,7 @@ import express from "express";
 import {
 	CreateExpensePlanController,
 	DeleteExpensePlanController,
+	FindExpensePlanController,
 	UpdateExpenseController,
 	ViewExpanseController,
 } from "../Controllers/ExpensePlan.controller";
@@ -19,6 +20,7 @@ const route = express.Router();
 route.get("/:userId", ViewExpanseController);
 route.post(
 	"/",
+	VerifyToken,
 	SchemaValidator(CreateExpensePlanSchema),
 	CreateExpensePlanController
 );
@@ -38,5 +40,7 @@ route.put(
 	SchemaValidator(UpdateExpensePlanSchema),
 	UpdateExpenseController
 );
+
+route.get("/plan/:id_expensePlan", VerifyToken, FindExpensePlanController);
 
 export default route;

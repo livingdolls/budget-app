@@ -36,7 +36,13 @@ export const RegisterUserController = async (
 		);
 	} catch (error: any) {
 		if (error.code === "P2002") {
-			return console.log("email sudah ada!");
+			return Respon(
+				409,
+				false,
+				[],
+				"Email sudah terdaftar!, silahkan login.",
+				res
+			);
 		}
 		next(error);
 	}

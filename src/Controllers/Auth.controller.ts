@@ -107,7 +107,7 @@ export const LoginUserController = async (
 
 		res.json({ signToken });
 	} catch (error) {
-		console.log(error);
+		next(error);
 	}
 };
 

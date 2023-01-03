@@ -158,3 +158,6 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjcmVkZW50aWFsSWQiO
 #POST  http://localhost:3001/api/v1/auth/empty
 
 #eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjcmVkZW50aWFsSWQiOiJmYTBmMTdhNC0zNjllLTQxYjktYTdkYS04ODk4NDgzYjk1ZTEiLCJ1c2VySWQiOiJlZWUyNGRlZi1kYjY1LTQ5NDktYTlhYS1hNjk0NzhiOWY1OWMiLCJleHAiOjE2NzIxNjMyOTJ9.EkiG1fHWiy-ByiJUu3Xk8LtYhWjoeKRH4vHLLVxrcJo
+
+###
+GET budget-app-production-8a62.up.railway.app/api/v1/expense-plan

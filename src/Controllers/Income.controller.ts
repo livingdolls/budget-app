@@ -64,6 +64,6 @@ export const ViewIncomeController = async (
 
 		Respon(200, true, respon, "berhasil mendapatkan data", res);
 	} catch (error) {
-		console.log(error);
+		next(error);
 	}
 };

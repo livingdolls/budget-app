@@ -72,6 +72,29 @@ export const DeleteIncomeService = async (
 		throw new Error("ada kesalahan pada income, coba kembali!");
 	}
 
+	const maxExpense = await prisma.expensePlan.groupBy({
+		by: ["idMainBudget"],
+		where: {
+			idMainBudget: id.idMainBudget,
+		},
+		_sum: {
+			maxExpense: true,
+		},
+	});
+
+	if (maxExpense.length !== 0) {
+		if (maxExpense[0]._sum.maxExpense !== null) {
+			if (
+				maxExpense[0]._sum.maxExpense >
+				prevBudget.maxBudget - prevIncome.budget
+			) {
+				throw Error(
+					"Mohon kurangi rencana pengeluaran untuk menghapus income yang dipilih!"
+				);
+			}
+		}
+	}
+
 	const respon = await prisma.mainBudget.update({
 		where: {
 			id_main_budget: id.idMainBudget,

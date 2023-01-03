@@ -56,7 +56,7 @@ app.get("/", async (req, res) => {
 	res.send("App Running");
 });
 
-const Port = process.env.APP_PORT || 3001;
+const Port = process.env.PORT || 3000;
 app.listen(Port, () => {
 	console.log("Connect to backend port = ", Port);
 });
